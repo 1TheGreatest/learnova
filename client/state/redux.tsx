@@ -7,6 +7,9 @@ import {
 import { useRef } from "react";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import globalReducer from "@/state";
+import { api } from "@/state/api";
+
 
 /* REDUX STORE */
 const rootReducer = combineReducers({
