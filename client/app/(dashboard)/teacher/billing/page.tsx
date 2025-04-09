@@ -1,8 +1,8 @@
 import Billing from "@/components/billing";
 import React from "react";
 
-const UserBilling = () => {
+const TeacherBilling = () => {
   return <Billing />;
 };
 
-export default UserBilling;
+export default TeacherBilling;
