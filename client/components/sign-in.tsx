@@ -21,7 +21,7 @@ const SignInComponent = () => {
   // Otherwise, redirect to the user courses page
   const getRedirectUrl = () => {
     if (isCheckoutPage) {
-      return `/checkout?step=2&id=${courseId}`;
+      return `/checkout?step=2&id=${courseId}&showSignUp=true`;
     }
     const userType = user?.publicMetadata?.userType as string;
     if (userType === "teacher") {

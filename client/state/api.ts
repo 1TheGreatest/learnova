@@ -9,7 +9,7 @@ const customBaseQuery = async (
   api: BaseQueryApi,
   extraOptions: any
 ) => {
-  
+  // Api request to authenticate every single api on the backend
   const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
     prepareHeaders: async (headers) => {
@@ -24,6 +24,7 @@ const customBaseQuery = async (
   try {
     const result: any = await baseQuery(args, api, extraOptions);
 
+    // error result from backend
     if (result.error) {
       const errorData = result.error.data;
       const errorMessage =
@@ -34,14 +35,16 @@ const customBaseQuery = async (
     }
 
     const isMutationRequest =
-      (args as FetchArgs).method && (args as FetchArgs).method !== "GET";
+      (args as FetchArgs).method && (args as FetchArgs).method !== "GET"; // Check if the request is a mutation (POST, PUT, DELETE)
 
+    // success result from backend
+    // toast message for mutation requests
     if (isMutationRequest) {
       const successMessage = result.data?.message;
       if (successMessage) toast.success(successMessage);
     }
 
-    
+    // handling data from the backend
     if (result.data) {
       result.data = result.data.data;
     } else if (
@@ -153,9 +156,12 @@ export const api = createApi({
     TRANSACTIONS
     =============== 
     */
+    // Get all transactions for a user
     getTransactions: build.query<Transaction[], string>({
       query: (userId) => `transactions?userId=${userId}`,
     }),
+    
+    // Create a Stripe Payment Intent
     createStripePaymentIntent: build.mutation<
       { clientSecret: string },
       { amount: number }
@@ -166,6 +172,8 @@ export const api = createApi({
         body: { amount },
       }),
     }),
+
+
     createTransaction: build.mutation<Transaction, Partial<Transaction>>({
       query: (transaction) => ({
         url: "transactions",
