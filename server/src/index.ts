@@ -6,16 +6,21 @@ import helmet from "helmet"; // Security middleware
 import morgan from "morgan"; // HTTP request logger middleware
 import * as dynamoose from "dynamoose"; // DynamoDB ORM for Node.js
 import courseRoutes from "./routes/courseRoutes";
+import { createClerkClient } from "@clerk/express";
+import userClerkRoutes from "./routes/userClerkRoutes";
 /* ROUTE IMPORTS */
 
 /* CONFIGURATIONS */
 dotenv.config();
 
 const isProduction = process.env.NODE_ENV === "production"; // Check if the environment is production
-
 if (!isProduction) {
   dynamoose.aws.ddb.local(); // Use local DynamoDB for non-production environments
 }
+
+export const clerkClient = createClerkClient({
+  secretKey: process.env.CLERK_SECRET_KEY,
+}); // Initialize Clerk client
 
 const app = express(); // Create an Express application
 app.use(express.json()); // Parse JSON request bodies
@@ -32,7 +37,8 @@ app.get("/", (req, res) => {
 });
 
 // Import your routes here
-app.use("/courses", courseRoutes); 
+app.use("/courses", courseRoutes);
+app.use("/users/clerk", userClerkRoutes);
 
 /* SERVER */
 const port = process.env.PORT || 3000; // Define the port for the server
