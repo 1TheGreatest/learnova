@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useGetCoursesQuery } from "@/state/api";
 import CourseCardSearch from "@/components/course-card-search";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 const LoadingSkeleton = () => {
   return (
@@ -42,6 +43,7 @@ const LoadingSkeleton = () => {
 };
 
 const Landing = () => {
+  // const { user } = useUser();
   const router = useRouter();
   // custom hook to manage the carousel state
   const currentImage = useCarousel({ totalImages: 3 });
@@ -90,7 +92,9 @@ const Landing = () => {
               fill
               priority={index === currentImage}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className={`landing__hero-image ${index === currentImage ? "landing__hero-image--active" : ""}`}
+              className={`landing__hero-image ${
+                index === currentImage ? "landing__hero-image--active" : ""
+              }`}
             />
           ))}
         </div>
