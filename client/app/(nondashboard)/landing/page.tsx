@@ -8,6 +8,7 @@ import { featuredCoursesTags, heroImages } from "@/data";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetCoursesQuery } from "@/state/api";
 import CourseCardSearch from "@/components/course-card-search";
+import { useRouter } from "next/navigation";
 
 const LoadingSkeleton = () => {
   return (
@@ -41,11 +42,20 @@ const LoadingSkeleton = () => {
 };
 
 const Landing = () => {
+  const router = useRouter();
   // custom hook to manage the carousel state
   const currentImage = useCarousel({ totalImages: 3 });
 
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
 
+  const handleCourseClick = (courseId: string) => {
+    // Handle course click logic here
+    router.push(`/search?id=${courseId}`);
+  };
+
+  if (isLoading) {
+    return <LoadingSkeleton />;
+  }
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -109,7 +119,7 @@ const Landing = () => {
         </div>
         <div className="landing__courses">
           {/* Courses will be displayed here */}
-          {courses && courses.length > 0 ? (
+          {courses &&
             courses.slice(0, 3).map((course, index) => (
               <motion.div
                 key={course.courseId}
@@ -121,24 +131,10 @@ const Landing = () => {
                 <CourseCardSearch
                   course={course}
                   isSelected={false}
-                  onGoToCourse={() => {
-                    // Handle course click
-                  }}
+                  onClick={() => handleCourseClick(course.courseId)}
                 />
-                {/* <div className="landing__courses-card-content">
-                  <h3>{course.title}</h3>
-                  <p>{course.description}</p>
-                  <p>{course.price ? `$${(course.price / 100).toFixed(2)}` : "Free"}</p>
-                </div> */}
               </motion.div>
-            ))
-          ) : isLoading ? (
-            <LoadingSkeleton />
-          ) : (
-            <div className="landing__error">
-              <p>Failed to load courses. Please try again later.</p>
-            </div>
-          )}
+            ))}
         </div>
       </motion.div>
     </motion.div>
