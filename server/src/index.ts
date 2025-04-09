@@ -6,7 +6,11 @@ import helmet from "helmet"; // Security middleware
 import morgan from "morgan"; // HTTP request logger middleware
 import * as dynamoose from "dynamoose"; // DynamoDB ORM for Node.js
 import courseRoutes from "./routes/courseRoutes";
-import { createClerkClient } from "@clerk/express";
+import {
+  clerkMiddleware,
+  createClerkClient,
+  requireAuth,
+} from "@clerk/express";
 import userClerkRoutes from "./routes/userClerkRoutes";
 /* ROUTE IMPORTS */
 
@@ -30,6 +34,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); // Set cr
 app.use(morgan("common")); // Use Morgan for logging HTTP requests
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: false })); // Parse URL-encoded request bodies (false for simple parsing)
+app.use(clerkMiddleware()); // Use Clerk middleware for authentication
 
 /* ROUTES */
 app.get("/", (req, res) => {
@@ -38,7 +43,7 @@ app.get("/", (req, res) => {
 
 // Import your routes here
 app.use("/courses", courseRoutes);
-app.use("/users/clerk", userClerkRoutes);
+app.use("/users/clerk", requireAuth(), userClerkRoutes);
 
 /* SERVER */
 const port = process.env.PORT || 3000; // Define the port for the server
