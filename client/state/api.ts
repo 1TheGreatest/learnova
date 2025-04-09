@@ -160,7 +160,7 @@ export const api = createApi({
     getTransactions: build.query<Transaction[], string>({
       query: (userId) => `transactions?userId=${userId}`,
     }),
-    
+
     // Create a Stripe Payment Intent
     createStripePaymentIntent: build.mutation<
       { clientSecret: string },
@@ -173,7 +173,9 @@ export const api = createApi({
       }),
     }),
 
-
+    // Create a transaction
+    // This is called when a user enrolls in a course
+    // It creates a transaction record in the database
     createTransaction: build.mutation<Transaction, Partial<Transaction>>({
       query: (transaction) => ({
         url: "transactions",

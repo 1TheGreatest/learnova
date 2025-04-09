@@ -2,13 +2,13 @@
 
 import { useUser } from "@clerk/nextjs";
 import React from "react";
-// import PaymentPage from "./payment";
-// import CompletionPage from "./completion";
+
 import CheckoutDetailsPage from "./details";
 import { useCheckoutNavigation } from "@/hooks/useCheckoutNavigation";
 import WizardStepper from "@/components/wizard-stepper";
 import Loading from "@/components/loading";
 import PaymentPage from "./payment";
+import CompletionPage from "./completion";
 
 const CheckoutWizard = () => {
   const { isLoaded } = useUser();
@@ -24,7 +24,7 @@ const CheckoutWizard = () => {
       case 2:
         return <PaymentPage />;
       case 3:
-        // return <CompletionPage />;
+        return <CompletionPage />;
       default:
         return <CheckoutDetailsPage />;
     }
