@@ -16,6 +16,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   if (!isLoaded) return <Loading />;
   if (!user) return <div className="">Please sign in to access</div>;
 
+  const isCoursePage = false;
   return (
     <SidebarProvider>
       <div className="dashboard">
@@ -24,16 +25,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="dashboard__content">
           {/* chapter sidebar */}
           {/* {courseId && <ChaptersSidebar />} */}
-          {/* <div
+          <div
             className={cn(
               "dashboard__main",
               isCoursePage && "dashboard__main--not-course"
             )}
             style={{ height: "100vh" }}
-          > */}
-          <Navbar isCoursePage={false} />
-          {/* <main className="dashboard__body">{children}</main> */}
-          {/* </div> */}
+          >
+            <Navbar isCoursePage={isCoursePage} />
+            <main className="dashboard__body">{children}</main>
+          </div>
         </div>
       </div>
     </SidebarProvider>
