@@ -12,6 +12,7 @@ import {
   requireAuth,
 } from "@clerk/express";
 import userClerkRoutes from "./routes/userClerkRoutes";
+import transactionRoutes from "./routes/transactionRoutes";
 /* ROUTE IMPORTS */
 
 /* CONFIGURATIONS */
@@ -44,6 +45,7 @@ app.get("/", (req, res) => {
 // Import your routes here
 app.use("/courses", courseRoutes);
 app.use("/users/clerk", requireAuth(), userClerkRoutes);
+app.use("/transactions", requireAuth(), transactionRoutes);
 
 /* SERVER */
 const port = process.env.PORT || 3000; // Define the port for the server
