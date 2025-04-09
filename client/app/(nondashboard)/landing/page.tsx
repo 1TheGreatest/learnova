@@ -6,6 +6,8 @@ import Image from "next/image";
 import { useCarousel } from "@/hooks/useCarousel";
 import { featuredCoursesTags, heroImages } from "@/data";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useGetCoursesQuery } from "@/state/api";
+import CourseCardSearch from "@/components/course-card-search";
 
 const LoadingSkeleton = () => {
   return (
@@ -41,6 +43,8 @@ const LoadingSkeleton = () => {
 const Landing = () => {
   // custom hook to manage the carousel state
   const currentImage = useCarousel({ totalImages: 3 });
+
+  const { data: courses, isLoading, isError } = useGetCoursesQuery({});
 
   return (
     <motion.div
@@ -105,6 +109,36 @@ const Landing = () => {
         </div>
         <div className="landing__courses">
           {/* Courses will be displayed here */}
+          {courses && courses.length > 0 ? (
+            courses.slice(0, 3).map((course, index) => (
+              <motion.div
+                key={course.courseId}
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ amount: 0.4 }}
+              >
+                <CourseCardSearch
+                  course={course}
+                  isSelected={false}
+                  onGoToCourse={() => {
+                    // Handle course click
+                  }}
+                />
+                {/* <div className="landing__courses-card-content">
+                  <h3>{course.title}</h3>
+                  <p>{course.description}</p>
+                  <p>{course.price ? `$${(course.price / 100).toFixed(2)}` : "Free"}</p>
+                </div> */}
+              </motion.div>
+            ))
+          ) : isLoading ? (
+            <LoadingSkeleton />
+          ) : (
+            <div className="landing__error">
+              <p>Failed to load courses. Please try again later.</p>
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>

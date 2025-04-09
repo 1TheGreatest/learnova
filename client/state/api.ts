@@ -9,6 +9,7 @@ const customBaseQuery = async (
   api: BaseQueryApi,
   extraOptions: any
 ) => {
+  
   const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
     prepareHeaders: async (headers) => {
@@ -40,6 +41,7 @@ const customBaseQuery = async (
       if (successMessage) toast.success(successMessage);
     }
 
+    
     if (result.data) {
       result.data = result.data.data;
     } else if (
