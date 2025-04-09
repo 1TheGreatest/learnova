@@ -5,6 +5,7 @@ import cors from "cors"; // Middleware for enabling CORS
 import helmet from "helmet"; // Security middleware
 import morgan from "morgan"; // HTTP request logger middleware
 import * as dynamoose from "dynamoose"; // DynamoDB ORM for Node.js
+import courseRoutes from "./routes/courseRoutes";
 /* ROUTE IMPORTS */
 
 /* CONFIGURATIONS */
@@ -29,6 +30,9 @@ app.use(bodyParser.urlencoded({ extended: false })); // Parse URL-encoded reques
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+// Import your routes here
+app.use("/courses", courseRoutes); 
 
 /* SERVER */
 const port = process.env.PORT || 3000; // Define the port for the server
