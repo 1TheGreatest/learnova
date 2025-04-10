@@ -4,12 +4,13 @@ import { dark } from "@clerk/themes";
 import { Bell, BookOpen } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import Loading from "./loading";
 
 const NonDashboardNavbar = () => {
-  const { user } = useUser();
-  console.log("User :", user);
+  const { user, isLoaded } = useUser();
   const userRole = user?.publicMetadata?.userType as "student" | "teacher";
-  console.log("User Role:", userRole);
+
+  if (!isLoaded) return <Loading />;
   return (
     <nav className="nondashboard-navbar">
       <div className="nondashboard-navbar__container">
@@ -60,13 +61,13 @@ const NonDashboardNavbar = () => {
           </SignedIn>
           <SignedOut>
             <Link
-              href={"/sign-in"}
+              href={"/signin"}
               className="nondashboard-navbar__auth-button--login"
             >
               Log in
             </Link>
             <Link
-              href={"/sign-up"}
+              href={"/signup"}
               className="nondashboard-navbar__auth-button--signup"
             >
               Sign up

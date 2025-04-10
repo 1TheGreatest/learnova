@@ -49,8 +49,7 @@ const AppSidebar = () => {
   if (!isLoaded) return <Loading />;
   if (!user) return <div>User not found</div>;
 
-  const userType =
-    (user.publicMetadata.userType as "student" | "teacher") || "student";
+  const userType = user.publicMetadata.userType as "student" | "teacher";
   const currentNavLinks = navLinks[userType]; // Get the current user's nav links
 
   return (
@@ -73,7 +72,7 @@ const AppSidebar = () => {
                   <Image
                     src="/images/logo.svg"
                     alt="logo"
-                    width={25}
+                    width={25}  
                     height={20}
                     className="app-sidebar__logo"
                   />

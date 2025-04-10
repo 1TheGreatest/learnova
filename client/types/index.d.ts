@@ -95,6 +95,17 @@ declare global {
     freePreview?: boolean;
     type: "Text" | "Quiz" | "Video";
   }
+
+  interface CustomFixedModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    children: ReactNode;
+  }
+  
+  interface CourseCardProps {
+    course: Course;
+    onGoToCourse: (course: Course) => void;
+  }
 }
 
 export {};

@@ -1,12 +1,30 @@
 "use client";
 
+import { CustomFormField } from "@/components/CustomFormField";
+import Header from "@/components/header";
+import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import { CourseFormData, courseSchema } from "@/lib/schemas";
+import {
+  centsToDollars,
+  createCourseFormData,
+  uploadAllVideos,
+} from "@/lib/utils";
+import { openSectionModal, setSections } from "@/state";
 import {
   useGetCourseQuery,
   useGetUploadVideoUrlMutation,
   useUpdateCourseMutation,
 } from "@/state/api";
 import { useAppDispatch, useAppSelector } from "@/state/redux";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeft, Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import DroppableComponent from "./_components/droppable";
+import ChapterModal from "./_components/chapter-modal";
+import SectionModal from "./_components/section-modal";
 
 const CourseEditor = () => {
   const router = useRouter();
@@ -16,9 +34,8 @@ const CourseEditor = () => {
   const [updateCourse] = useUpdateCourseMutation();
   const [getUploadVideoUrl] = useGetUploadVideoUrlMutation();
 
-  const dispatch = useAppDispatch(); //
-  const { sections } = useAppSelector((state) => state.global.courseEditor); // not to pass too many props 
-  
+  const dispatch = useAppDispatch();
+  const { sections } = useAppSelector((state) => state.global.courseEditor); // not to pass too many props
 
   const methods = useForm<CourseFormData>({
     resolver: zodResolver(courseSchema),
@@ -52,7 +69,8 @@ const CourseEditor = () => {
         getUploadVideoUrl
       );
 
-      const formData = createCourseFormData(data, updatedSections);
+      //  const formData = createCourseFormData(data, updatedSections);
+      const formData = createCourseFormData(data, sections);
 
       await updateCourse({
         courseId: id,
@@ -155,6 +173,7 @@ const CourseEditor = () => {
               </div>
             </div>
 
+            {/* Sections and Chapters- Droppable Components */}
             <div className="bg-customgreys-darkGrey mt-4 md:mt-0 p-4 rounded-lg basis-1/2">
               <div className="flex justify-between items-center mb-2">
                 <h2 className="text-2xl font-semibold text-secondary-foreground">
@@ -189,6 +208,7 @@ const CourseEditor = () => {
         </form>
       </Form>
 
+      {/* Modals from the side */}
       <ChapterModal />
       <SectionModal />
     </div>

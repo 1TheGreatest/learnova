@@ -9,10 +9,11 @@ const SignUpComponent = () => {
   const searchParams = useSearchParams();
   const isCheckoutPage = searchParams.get("showSignUp") !== null;
   const courseId = searchParams.get("id");
+  console.log("isCheckoutPage", isCheckoutPage);
 
   const signInUrl = isCheckoutPage
     ? `/checkout?step=1&id=${courseId}&showSignUp=false`
-    : "/sign-in";
+    : "/signin";
 
   const getRedirectUrl = () => {
     if (isCheckoutPage) {
@@ -21,8 +22,10 @@ const SignUpComponent = () => {
 
     const userType = user?.publicMetadata?.userType as string;
     if (userType === "teacher") {
+      console.log("User is a teacher");
       return "/teacher/courses";
     }
+    console.log("User is a student");
     return "/user/courses";
   };
   return (
