@@ -43,12 +43,11 @@ const LoadingSkeleton = () => {
 };
 
 const Landing = () => {
-  // const { user } = useUser();
   const router = useRouter();
   // custom hook to manage the carousel state
   const currentImage = useCarousel({ totalImages: 3 });
 
-  const { data: courses, isLoading, isError } = useGetCoursesQuery({});
+  const { data: courses, isLoading } = useGetCoursesQuery({});
 
   const handleCourseClick = (courseId: string) => {
     // Handle course click logic here

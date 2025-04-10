@@ -101,10 +101,101 @@ declare global {
     onClose: () => void;
     children: ReactNode;
   }
-  
+
   interface CourseCardProps {
     course: Course;
     onGoToCourse: (course: Course) => void;
+  }
+
+  interface UserCourseProgress {
+    userId: string;
+    courseId: string;
+    enrollmentDate: string;
+    overallProgress: number;
+    sections: SectionProgress[];
+    lastAccessedTimestamp: string;
+  }
+
+  interface Comment {
+    commentId: string;
+    userId: string;
+    text: string;
+    timestamp: string;
+  }
+
+  interface ChapterProgress {
+    chapterId: string;
+    completed: boolean;
+  }
+
+  interface SectionProgress {
+    sectionId: string;
+    chapters: ChapterProgress[];
+  }
+
+  interface User {
+    userId: string;
+    firstName?: string;
+    lastName?: string;
+    username?: string;
+    email: string;
+    publicMetadata: {
+      userType: "teacher" | "student";
+    };
+    privateMetadata: {
+      settings?: UserSettings;
+      paymentMethods?: Array<PaymentMethod>;
+      defaultPaymentMethodId?: string;
+      stripeCustomerId?: string;
+    };
+    unsafeMetadata: {
+      bio?: string;
+      urls?: string[];
+    };
+  }
+
+  interface PaymentMethod {
+    methodId: string;
+    type: string;
+    lastFour: string;
+    expiry: string;
+  }
+
+
+  interface ChapterModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    sectionIndex: number | null;
+    chapterIndex: number | null;
+    sections: Section[];
+    setSections: React.Dispatch<React.SetStateAction<Section[]>>;
+    courseId: string;
+  }
+
+  interface SectionModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    sectionIndex: number | null;
+    sections: Section[];
+    setSections: React.Dispatch<React.SetStateAction<Section[]>>;
+  }
+
+  interface DroppableComponentProps {
+    sections: Section[];
+    setSections: (sections: Section[]) => void;
+    handleEditSection: (index: number) => void;
+    handleDeleteSection: (index: number) => void;
+    handleAddChapter: (sectionIndex: number) => void;
+    handleEditChapter: (sectionIndex: number, chapterIndex: number) => void;
+    handleDeleteChapter: (sectionIndex: number, chapterIndex: number) => void;
+  }
+
+  interface CourseFormData {
+    courseTitle: string;
+    courseDescription: string;
+    courseCategory: string;
+    coursePrice: string;
+    courseStatus: boolean;
   }
 }
 
