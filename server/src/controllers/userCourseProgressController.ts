@@ -3,10 +3,6 @@ import { getAuth } from "@clerk/express";
 import UserCourseProgress from "../models/userCourseProgressModel";
 import Course from "../models/courseModel";
 import { calculateOverallProgress, mergeSections } from "../utils/utils";
-// import UserCourseProgress from "../models/userCourseProgressModel";
-// import Course from "../models/courseModel";
-// import { calculateOverallProgress } from "../utils/utils";
-// import { mergeSections } from "../utils/utils";
 
 export const getUserEnrolledCourses = async (
   req: Request,
@@ -25,11 +21,20 @@ export const getUserEnrolledCourses = async (
       .eq(userId)
       .exec();
     const courseIds = enrolledCourses.map((item: any) => item.courseId);
-    const courses = await Course.batchGet(courseIds);
-    res.status(200).json({
-      message: "Enrolled courses retrieved successfully",
-      data: courses,
-    });
+    if (courseIds.length > 0) {
+      // proceed with BatchGetItem
+      const courses = await Course.batchGet(courseIds);
+      res.status(200).json({
+        message: "Enrolled courses retrieved successfully",
+        data: courses,
+      });
+    } else {
+      // handle the empty case gracefully (e.g. return an empty list or skip the call)
+      res.status(200).json({
+        message: "Enrolled courses retrieved successfully",
+        data: [],
+      });
+    }
   } catch (error) {
     res
       .status(500)
