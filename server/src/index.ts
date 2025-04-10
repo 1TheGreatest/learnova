@@ -14,6 +14,8 @@ import {
 import userClerkRoutes from "./routes/userClerkRoutes";
 import transactionRoutes from "./routes/transactionRoutes";
 import userCourseProgressRoutes from "./routes/userCourseProgressRoutes";
+import serverless from "serverless-http"; // Middleware for serverless applications
+import seed from "./seed/seedDynamodb"; // Import the seed function for seeding the database
 /* ROUTE IMPORTS */
 
 /* CONFIGURATIONS */
@@ -56,3 +58,18 @@ if (!isProduction) {
     console.log(`Server is running on http://localhost:${port}`);
   });
 }
+
+// AWS production environment
+const serverlessApp = serverless(app);
+export const handler = async (event: any, context: any) => {
+  if (event.action === "seed") {
+    // Seed the database not ideal for production
+    await seed();
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: "Database seeded successfully" }),
+    };
+  } else {
+    return serverlessApp(event, context);
+  }
+};
