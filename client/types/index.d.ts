@@ -68,6 +68,33 @@ declare global {
   interface CoursePreviewProps {
     course: Course;
   }
+
+  interface ToolbarProps {
+    onSearch: (search: string) => void;
+    onCategoryChange: (category: string) => void;
+  }
+  interface TeacherCourseCardProps {
+    course: Course;
+    onEdit: (course: Course) => void;
+    onDelete: (course: Course) => void;
+    isOwner: boolean;
+  }
+
+  interface Section {
+    sectionId: string;
+    sectionTitle: string;
+    sectionDescription?: string;
+    chapters: Chapter[];
+  }
+
+  interface Chapter {
+    chapterId: string;
+    title: string;
+    content: string;
+    video?: string | File;
+    freePreview?: boolean;
+    type: "Text" | "Quiz" | "Video";
+  }
 }
 
 export {};

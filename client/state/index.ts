@@ -27,6 +27,7 @@ export const globalSlice = createSlice({
     setSections: (state, action: PayloadAction<Section[]>) => {
       state.courseEditor.sections = action.payload;
     },
+    // openChapterModal and closeChapterModal are used to open and close the modal for adding/editing chapters
     openChapterModal: (
       state,
       action: PayloadAction<{
@@ -38,12 +39,14 @@ export const globalSlice = createSlice({
       state.courseEditor.selectedSectionIndex = action.payload.sectionIndex;
       state.courseEditor.selectedChapterIndex = action.payload.chapterIndex;
     },
+
     closeChapterModal: (state) => {
       state.courseEditor.isChapterModalOpen = false;
       state.courseEditor.selectedSectionIndex = null;
       state.courseEditor.selectedChapterIndex = null;
     },
 
+    // openSectionModal and closeSectionModal are used to open and close the modal for adding/editing sections
     openSectionModal: (
       state,
       action: PayloadAction<{ sectionIndex: number | null }>
@@ -56,6 +59,7 @@ export const globalSlice = createSlice({
       state.courseEditor.selectedSectionIndex = null;
     },
 
+    // addSection, editSection, and deleteSection are used to manage sections in the course editor
     addSection: (state, action: PayloadAction<Section>) => {
       state.courseEditor.sections.push(action.payload);
     },
@@ -70,6 +74,8 @@ export const globalSlice = createSlice({
       state.courseEditor.sections.splice(action.payload, 1);
     },
 
+    // addChapter, editChapter, and deleteChapter are used to manage chapters in the course editor
+    // They are similar to the section management functions but operate on chapters within a section
     addChapter: (
       state,
       action: PayloadAction<{ sectionIndex: number; chapter: Chapter }>
