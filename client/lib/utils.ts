@@ -32,6 +32,7 @@ export const uploadAllVideos = async (
   courseId: string,
   getUploadVideoUrl: any
 ) => {
+  // Create a deep copy of the sections to avoid mutating the original data
   const updatedSections = localSections.map((section) => ({
     ...section,
     chapters: section.chapters.map((chapter) => ({
