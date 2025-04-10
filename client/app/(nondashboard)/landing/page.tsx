@@ -51,7 +51,9 @@ const Landing = () => {
 
   const handleCourseClick = (courseId: string) => {
     // Handle course click logic here
-    router.push(`/search?id=${courseId}`);
+    router.push(`/search?id=${courseId}`, {
+      scroll: false,
+    });
   };
 
   if (isLoading) {
@@ -77,7 +79,7 @@ const Landing = () => {
             knowledge.
           </p>
           <div className="landing__cta">
-            <Link href="/search">
+            <Link href="/search" scroll={false}>
               <div className="landing__cta-button">Explore Courses</div>
             </Link>
           </div>
@@ -114,6 +116,7 @@ const Landing = () => {
             <Link
               key={index}
               href={`/search?tag=${tag}`}
+              scroll={false}
               className="landing__tag"
             >
               {tag}

@@ -161,7 +161,6 @@ declare global {
     expiry: string;
   }
 
-
   interface ChapterModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -197,6 +196,15 @@ declare global {
     coursePrice: string;
     courseStatus: boolean;
   }
+
+  interface DateRange {
+    from: string | undefined;
+    to: string | undefined;
+  }
+
+  type CreateUserArgs = Omit<User, "userId">;
+  type CreateCourseArgs = Omit<Course, "courseId">;
+  type CreateTransactionArgs = Omit<Transaction, "transactionId">;
 }
 
 export {};

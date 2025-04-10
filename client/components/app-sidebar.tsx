@@ -72,7 +72,7 @@ const AppSidebar = () => {
                   <Image
                     src="/images/logo.svg"
                     alt="logo"
-                    width={25}  
+                    width={25}
                     height={20}
                     className="app-sidebar__logo"
                   />
@@ -152,42 +152,3 @@ const AppSidebar = () => {
 };
 
 export default AppSidebar;
-
-// import { useClerk, useUser } from "@clerk/nextjs";
-// import { usePathname } from "next/navigation";
-// import React from "react";
-// import {
-//   Sidebar,
-//   SidebarContent,
-//   SidebarFooter,
-//   SidebarHeader,
-//   SidebarMenu,
-//   SidebarMenuButton,
-//   SidebarMenuItem,
-//   useSidebar,
-// } from "@/components/ui/sidebar";
-// import {
-//   BookOpen,
-//   Briefcase,
-//   DollarSign,
-//   LogOut,
-//   PanelLeft,
-//   Settings,
-//   User,
-// } from "lucide-react";
-// import Loading from "./Loading";
-// import Image from "next/image";
-// import { cn } from "@/lib/utils";
-// import Link from "next/link";
-
-// const AppSidebar = () => {
-
-//   return (
-//     <
-//     >
-
-//     </>
-//   );
-// };
-
-// export default AppSidebar;

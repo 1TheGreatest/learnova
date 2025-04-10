@@ -8,7 +8,12 @@ const Footer = () => {
       <p>&copy; {new Date().getFullYear()} Learnova. All rights reserved.</p>
       <div className="footer__links">
         {footerLinks.map((link, index) => (
-          <Link key={index} href={link.href} className="footer__link">
+          <Link
+            key={index}
+            href={link.href}
+            scroll={false}
+            className="footer__link"
+          >
             {link.name}
           </Link>
         ))}

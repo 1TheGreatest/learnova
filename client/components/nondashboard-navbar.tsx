@@ -16,7 +16,7 @@ const NonDashboardNavbar = () => {
       <div className="nondashboard-navbar__container">
         {/* Right side */}
         <div className="nondashboard-navbar__search">
-          <Link href="/" className="nondashboard-navbar__brand">
+          <Link href="/" scroll={false} className="nondashboard-navbar__brand">
             Learnova
           </Link>
           <div className="flex items-center gap-4">
@@ -24,6 +24,7 @@ const NonDashboardNavbar = () => {
             <div className="relative group">
               <Link
                 href="/search"
+                scroll={false}
                 className="nondashboard-navbar__search-input"
               >
                 <span className="hidden sm:inline">Search Courses</span>
