@@ -98,10 +98,12 @@ export const mergeSections = (
   newSections: any[]
 ): any[] => {
   const existingSectionsMap = new Map<string, any>();
+  // Create a map of existing sections for quick lookup
   for (const existingSection of existingSections) {
     existingSectionsMap.set(existingSection.sectionId, existingSection);
   }
 
+  // Iterate through new sections and merge or add them
   for (const newSection of newSections) {
     const section = existingSectionsMap.get(newSection.sectionId);
     if (!section) {
@@ -122,10 +124,12 @@ export const mergeChapters = (
   newChapters: any[]
 ): any[] => {
   const existingChaptersMap = new Map<string, any>();
+  // Create a map of existing chapters for quick lookup
   for (const existingChapter of existingChapters) {
     existingChaptersMap.set(existingChapter.chapterId, existingChapter);
   }
 
+  // Iterate through new chapters and merge or add them
   for (const newChapter of newChapters) {
     existingChaptersMap.set(newChapter.chapterId, {
       ...(existingChaptersMap.get(newChapter.chapterId) || {}),
@@ -136,17 +140,21 @@ export const mergeChapters = (
   return Array.from(existingChaptersMap.values());
 };
 
+// Calculate overall progress based on sections and chapters
 export const calculateOverallProgress = (sections: any[]): number => {
+  // Get total chapters
   const totalChapters = sections.reduce(
     (acc: number, section: any) => acc + section.chapters.length,
     0
   );
 
+  // Get completed chapters
   const completedChapters = sections.reduce(
     (acc: number, section: any) =>
       acc + section.chapters.filter((chapter: any) => chapter.completed).length,
     0
   );
 
+  // Calculate overall progress as a percentage
   return totalChapters > 0 ? (completedChapters / totalChapters) * 100 : 0;
 };
