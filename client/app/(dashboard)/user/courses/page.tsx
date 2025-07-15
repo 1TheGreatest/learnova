@@ -4,10 +4,10 @@ import { useGetUserEnrolledCoursesQuery } from "@/state/api";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { useState, useMemo } from "react";
-import Loading from "@/components/loading";
 import Header from "@/components/header";
 import Toolbar from "@/components/toolbar";
 import CourseCard from "@/components/course-card";
+import Loading from "@/components/loading";
 
 const Courses = () => {
   const router = useRouter();
