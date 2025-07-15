@@ -3,10 +3,10 @@
 import { useRef } from "react";
 import ReactPlayer from "react-player";
 import { useCourseProgressData } from "@/hooks/useCourseProgressData";
-import Loading from "@/components/loading";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Loading from "@/components/loading";
 
 const Course = () => {
   const {

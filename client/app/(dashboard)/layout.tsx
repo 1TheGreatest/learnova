@@ -1,6 +1,5 @@
 "use client";
 import AppSidebar from "@/components/app-sidebar";
-import Loading from "@/components/loading";
 import Navbar from "@/components/navbar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
@@ -8,6 +7,7 @@ import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import CourseChaptersSidebar from "./user/courses/[courseId]/course-chapters-sidebar";
+import Loading from "@/components/loading";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
