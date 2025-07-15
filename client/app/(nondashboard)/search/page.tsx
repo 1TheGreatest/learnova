@@ -1,6 +1,6 @@
 "use client";
 import CourseCardSearch from "@/components/course-card-search";
-import Loading from "@/components/loading";
+import Loading from "@/components/dancing";
 import { useGetCoursesQuery } from "@/state/api";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";

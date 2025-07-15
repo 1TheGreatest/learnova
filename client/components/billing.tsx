@@ -1,6 +1,6 @@
 "use client";
 
-import Loading from "@/components/loading";
+import Loading from "@/components/dancing";
 import {
   Select,
   SelectContent,

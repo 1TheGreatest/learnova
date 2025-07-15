@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useCurrentCourse } from "@/hooks/useCurrentCourse";
 import CoursePreview from "@/components/course-preview";
 import { GuestFormData, guestSchema } from "@/lib/schemas";
-import Loading from "@/components/loading";
+import Loading from "@/components/dancing";
 import { Form } from "@/components/ui/form";
 import { CustomFormField } from "@/components/CustomFormField";
 import { Button } from "@/components/ui/button";
@@ -73,7 +73,7 @@ const CheckoutDetailsPage = () => {
             <span className="checkout-details__divider-text">Or</span>
             <hr className="checkout-details__divider-line" />
           </div>
-          
+
           {/* SIGN IN / SIGN UP */}
           <div className="checkout-details__auth">
             {showSignUp ? <SignUpComponent /> : <SignInComponent />}

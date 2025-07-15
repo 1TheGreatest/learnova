@@ -1,4 +1,4 @@
-import Loading from "@/components/loading";
+import Loading from "@/components/dancing";
 import { useCurrentCourse } from "@/hooks/useCurrentCourse";
 import { useCreateStripePaymentIntentMutation } from "@/state/api";
 import {
@@ -37,7 +37,6 @@ const StripeProvider = ({ children }: { children: React.ReactNode }) => {
   const [createStripePaymentIntent] = useCreateStripePaymentIntentMutation();
   const { course } = useCurrentCourse();
 
-  
   useEffect(() => {
     if (!course) return;
     const fetchPaymentIntent = async () => {

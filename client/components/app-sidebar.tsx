@@ -20,7 +20,7 @@ import {
   Settings,
   User,
 } from "lucide-react";
-import Loading from "./loading";
+import Loading from "./dancing";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
