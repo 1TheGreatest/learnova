@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useCourseProgressData } from "@/hooks/useCourseProgressData";
 import { cn } from "@/lib/utils";
-import Loading from "@/components/dancing";
+import Loading from "@/components/loading";
 
 const CourseChaptersSidebar = () => {
   const router = useRouter();

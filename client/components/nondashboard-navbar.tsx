@@ -4,7 +4,7 @@ import { dark } from "@clerk/themes";
 import { Bell, BookOpen } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import Loading from "./dancing";
+import Loading from "./loading";
 
 const NonDashboardNavbar = () => {
   const { user, isLoaded } = useUser();

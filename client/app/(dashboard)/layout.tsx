@@ -7,7 +7,7 @@ import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import CourseChaptersSidebar from "./user/courses/[courseId]/course-chapters-sidebar";
-import Loading from "@/components/dancing";
+import Loading from "@/components/loading";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();

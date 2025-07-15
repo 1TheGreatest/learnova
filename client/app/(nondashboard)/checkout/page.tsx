@@ -6,7 +6,7 @@ import React from "react";
 import CheckoutDetailsPage from "./details";
 import { useCheckoutNavigation } from "@/hooks/useCheckoutNavigation";
 import WizardStepper from "@/components/wizard-stepper";
-import Loading from "@/components/dancing";
+import Loading from "@/components/loading";
 import PaymentPage from "./payment";
 import CompletionPage from "./completion";
 

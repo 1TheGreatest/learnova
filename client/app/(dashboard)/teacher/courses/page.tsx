@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/components/header";
-import Loading from "@/components/dancing";
+import Loading from "@/components/loading";
 import TeacherCourseCard from "@/components/teacher-course-card";
 import Toolbar from "@/components/toolbar";
 import { Button } from "@/components/ui/button";

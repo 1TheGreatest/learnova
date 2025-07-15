@@ -1,4 +1,4 @@
-import Loading from "@/components/dancing";
+import Loading from "@/components/loading";
 import { useCurrentCourse } from "@/hooks/useCurrentCourse";
 import { useCreateStripePaymentIntentMutation } from "@/state/api";
 import {

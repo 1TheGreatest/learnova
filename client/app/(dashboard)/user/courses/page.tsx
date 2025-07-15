@@ -7,7 +7,7 @@ import { useState, useMemo } from "react";
 import Header from "@/components/header";
 import Toolbar from "@/components/toolbar";
 import CourseCard from "@/components/course-card";
-import Loading from "@/components/dancing";
+import Loading from "@/components/loading";
 
 const Courses = () => {
   const router = useRouter();

@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useCurrentCourse } from "@/hooks/useCurrentCourse";
 import CoursePreview from "@/components/course-preview";
 import { GuestFormData, guestSchema } from "@/lib/schemas";
-import Loading from "@/components/dancing";
+import Loading from "@/components/loading";
 import { Form } from "@/components/ui/form";
 import { CustomFormField } from "@/components/CustomFormField";
 import { Button } from "@/components/ui/button";
