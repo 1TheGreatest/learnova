@@ -64,12 +64,14 @@ const NonDashboardNavbar = () => {
             <Link
               href={"/signin"}
               className="nondashboard-navbar__auth-button--login"
+              scroll={false}
             >
               Log in
             </Link>
             <Link
               href={"/signup"}
               className="nondashboard-navbar__auth-button--signup"
+              scroll={false}
             >
               Sign up
             </Link>

@@ -9,7 +9,6 @@ const SignUpComponent = () => {
   const searchParams = useSearchParams();
   const isCheckoutPage = searchParams.get("showSignUp") !== null;
   const courseId = searchParams.get("id");
-  console.log("isCheckoutPage", isCheckoutPage);
 
   const signInUrl = isCheckoutPage
     ? `/checkout?step=1&id=${courseId}&showSignUp=false`
@@ -20,13 +19,11 @@ const SignUpComponent = () => {
       return `/checkout?step=2&id=${courseId}&showSignUp=false`;
     }
 
-    const userType = user?.publicMetadata?.userType as string;
-    if (userType === "teacher") {
-      console.log("User is a teacher");
-      return "/teacher/courses";
-    }
-    console.log("User is a student");
-    return "/user/courses";
+    // const userType = user?.publicMetadata?.userType as string;
+    // if (userType === "teacher") {
+    //   return "/teacher/courses";
+    // }
+    // return "/user/courses";
   };
   return (
     <SignUp

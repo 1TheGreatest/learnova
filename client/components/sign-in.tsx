@@ -7,10 +7,8 @@ import { useSearchParams } from "next/navigation";
 const SignInComponent = () => {
   const { user } = useUser();
   const searchParams = useSearchParams();
-  const isCheckoutPage = searchParams.get("showSignup") !== null;
+  const isCheckoutPage = searchParams.get("showSignUp") !== null;
   const courseId = searchParams.get("id");
-    console.log("isCheckoutPage", isCheckoutPage);
-
 
   // Sign-up URL
   const signUpUrl = isCheckoutPage
@@ -25,13 +23,11 @@ const SignInComponent = () => {
     if (isCheckoutPage) {
       return `/checkout?step=2&id=${courseId}&showSignUp=true`;
     }
-    const userType = user?.publicMetadata?.userType as string;
-    if (userType === "teacher") {
-      console.log("User is a teacher signin");
-      return "/teacher/courses";
-    }
-    console.log("User is a student signin");
-    return "/user/courses";
+    // const userType = user?.publicMetadata?.userType as string;
+    // if (userType === "teacher") {
+    //   return "/teacher/courses";
+    // }
+    // return "/user/courses";
   };
 
   return (
