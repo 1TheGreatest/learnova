@@ -28,7 +28,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }, [isCoursePage, pathName]);
 
   if (!isLoaded) return <Loading />;
-  if (!user) return <div className="">Please sign in to access</div>;
+  if (!user) return <div>Please sign in to access</div>;
 
   return (
     <SidebarProvider>

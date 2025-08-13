@@ -1,15 +1,16 @@
 "use client";
-import CourseCardSearch from "@/components/course-card-search";
-import Loading from "@/components/loading";
+
 import { useGetCoursesQuery } from "@/state/api";
-import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Loading from "@/components/loading";
+import CourseCardSearch from "@/components/course-card-search";
 import SelectedCourse from "./_components/selected-course";
 
 const Search = () => {
-  const seacrhParams = useSearchParams();
-  const id = seacrhParams.get("id");
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const router = useRouter();
@@ -17,7 +18,7 @@ const Search = () => {
   useEffect(() => {
     if (courses) {
       if (id) {
-        const course = courses.find((course) => course.courseId === id);
+        const course = courses.find((c) => c.courseId === id);
         setSelectedCourse(course || courses[0]);
       } else {
         setSelectedCourse(courses[0]);
@@ -25,19 +26,14 @@ const Search = () => {
     }
   }, [courses, id]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-  if (isError || !courses) {
-    return <div>Error loading courses</div>;
-  }
+  if (isLoading) return <Loading />;
+  if (isError || !courses) return <div>Failed to fetch courses</div>;
 
   const handleCourseSelect = (course: Course) => {
     setSelectedCourse(course);
-    router.push(
-      `/search?id=${course.courseId}`,
-      { scroll: false } // Prevent scroll to top
-    );
+    router.push(`/search?id=${course.courseId}`, {
+      scroll: false,
+    });
   };
 
   const handleEnrollNow = (courseId: string) => {
@@ -54,7 +50,7 @@ const Search = () => {
       className="search"
     >
       <h1 className="search__title">List of available courses</h1>
-      <h2 className="search__subtitle">{courses.length} courses available</h2>
+      <h2 className="search__subtitle">{courses.length} courses avaiable</h2>
       <div className="search__content">
         <motion.div
           initial={{ y: 40, opacity: 0 }}
@@ -71,6 +67,7 @@ const Search = () => {
             />
           ))}
         </motion.div>
+
         {selectedCourse && (
           <motion.div
             initial={{ y: 40, opacity: 0 }}
