@@ -1,7 +1,3 @@
-Here's a polished, high-standard README for your full-stack **Learning Management System (LMS)** project:
-
----
-
 # 🎓 Full-Stack Learning Management Platform
 
 A **production-grade Learning Management System** (LMS) inspired by platforms like Udemy and Coursera — featuring user authentication, course creation, video uploads, billing, and progress tracking. Built with **Next.js, Node.js, and AWS**, the platform is fully scalable, secure, and cloud-native.
